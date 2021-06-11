@@ -1,0 +1,98 @@
+{% extends "normaluser/base.html" %}
+{% load static %}
+
+{% block header %}
+        <div class="headerhero">
+          <img src="{% static "normaluser/img/headerhero.jpeg" %}">
+          <section>
+            <h1>DevHunt</h1>
+            <h3>Cool Vibes • Latest Tech Update • Lots More</h3>
+         </section>
+        </div>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-fluid">
+
+
+      <div class="postgroup">
+        <a class="postheader">~ Trending Posts ~</a>
+        <div class="owl-carousel owl-theme">
+
+            {% for post in trending %}
+            <!-- Card -->
+              <div class="card" style="width: 18rem;">
+                <div class="postcardimg">
+                  <img src="/media/{{ post.thumbnail }}" class="card-img-top" alt="...">
+                  <div class="postdatetime">
+                    <p class="datetime">{{ post.created_on.date }}</p>
+                    <p class="topic">{{ post.get_category_display }}</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{ post.title }}</h5>
+                  <p class="card-text">{{ post.description }}</p>
+                  <a href="/blog/{{ post.id }}/" class="btn btn-primary">Show Full</a>
+                </div>
+              </div>
+          <!-- End Card -->
+            {% endfor %}
+
+
+        </div>
+      </div>
+
+
+      <div class="postgroup">
+        <a class="postheader">~ All Posts ~</a>
+
+
+        <div class="postlist">
+            {% for post in allposts %}
+            <!-- Card -->
+              <div class="card" style="width: 18rem;">
+                <div class="postcardimg">
+                  <img src="/media/{{ post.thumbnail }}" class="card-img-top" alt="...">
+                  <div class="postdatetime">
+                    <p class="datetime">{{ post.created_on.date }}</p>
+                    <p class="topic">{{ post.get_category_display }}</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{ post.title }}</h5>
+                  <p class="card-text">{{ post.description }}</p>
+                  <a href="/blog/{{ post.id }}/" class="btn btn-primary">Show Full</a>
+                </div>
+              </div>
+          <!-- End Card -->
+            {% endfor %}
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+{% endblock %}
+
+
+{% block jsscript %}
+    <script>
+      var owl = $('.owl-carousel');
+      owl.owlCarousel({
+          items:5,
+          loop:true,
+          margin:10,
+          autowidth:true,
+          autoplay:true,
+          autoplayTimeout:2000,
+          autoplayHoverPause:true
+      });
+
+    </script>
+{% endblock %}
+
+  </body>
+</html>

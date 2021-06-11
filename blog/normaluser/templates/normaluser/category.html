@@ -1,0 +1,73 @@
+{% extends "normaluser/base.html" %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+
+    <div class="row categorybar">
+    {% if selected_category_name  %}
+        <div class="col categoryoption "><a href="{% url "blogcategory" %}">Home</a></div>
+        {% else %}
+        <div class="col categoryoption categoryactive"><a href="{% url "blogcategory" %}">Home</a></div>
+    {% endif %}
+        {% for i in category %}
+                <div class="col categoryoption {% if selected_category_name == i.1 %}
+                    categoryactive
+                {% endif %} "><a href="?category={{ i.0 }}" style="text-decoration: none!important">{{ i.1 }}</a></div>
+        {% endfor %}
+
+    </div>
+
+
+      <div class="postgroup">
+          {% if selected_category_name %}
+              <a class="postheader">~ {{ selected_category_name }} Posts ~</a>
+          {% else %}
+              <a class="postheader">~ All Posts ~</a>
+          {% endif %}
+
+        <div class="postlist">
+        {% if blogs %}
+            {% for post in blogs %}
+            <!-- Card -->
+              <div class="card" style="width: 18rem;">
+                <div class="postcardimg">
+                  <img src="/media/{{ post.thumbnail }}" class="card-img-top" alt="...">
+                  <div class="postdatetime">
+                    <p class="datetime">{{ post.created_on.date }}</p>
+                    <p class="topic">{{ post.get_category_display }}</p>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{ post.title }}</h5>
+                  <p class="card-text">{{ post.description }}</p>
+                  <a href="/blog/{{ post.id }}/" class="btn btn-primary">Show Full</a>
+                </div>
+              </div>
+          <!-- End Card -->
+            {% endfor %}
+            {% else %}
+                <div class="alert alert-dark" role="alert">
+                  No Blogs Found
+                </div>
+        {% endif %}
+
+
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+{% endblock %}
+
+
+{% block jsscript %}
+
+{% endblock %}

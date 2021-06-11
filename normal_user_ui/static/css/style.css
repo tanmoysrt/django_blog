@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none!important;
+}
+
+.headerhero{
+    width: 100vw;
+    max-height: 500px;
+    display: block;
+    background:linear-gradient(135deg, #65799b 0%,#5e2563 100%);
+}
+
+.headerhero img{
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    opacity: 0.6;
+    overflow:hidden;
+}
+
+.headerhero section{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-family: 'Comic Neue', cursive;
+}
+
+.headerhero section h1{
+    font-size: 50pt!important;
+}
+
+.headerhero section h3{
+    font-size: 20pt!important;
+}
+
+.activeitem{
+    background-color: orange;
+    font-weight: bolder!important;    
+    font-size: 14pt;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+
+.postgroup{
+    width: 100%;
+    /* height: 100px; */
+    /* background-color: rebeccapurple; */
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.postheader{
+    text-decoration: none!important;
+    color: black;
+    font-size: 2rem;
+    font-style: oblique;
+    font-family: 'Staatliches', cursive;
+    margin-bottom: 20px;
+}
+
+.postheader:hover{
+    color: black;
+}
+
+.postcardimg{
+    display: block;
+    position: relative;
+}
+
+.postdatetime{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 0px;
+    padding-left: 10px;
+}
+
+.postdatetime .datetime{
+    background-color: orange;
+    padding: 5px;
+    font-style: italic;
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+.postdatetime .topic{
+    background-color: lawngreen;
+    padding: 5px;
+    font-style: italic;
+    font-weight: bold;
+    border-radius: 2px;
+    margin-left: 8px;
+}
+
+.postlist{
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin-top: 10px;
+}
+
+/* Categorybar */
+
+.categorybar{
+    /* background-color: #5e2563; */
+    height: 50px;
+    /* align-items: center; */
+}
+
+.categoryoption{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #1270e5; */
+    margin-right: 10px;
+    border-bottom: 5px solid #0073ffc0;
+    cursor: pointer;
+}
+.categoryoption a{
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.categoryactive{
+    background-color: #0073ffc0;
+    border: none;
+    color: white;
+}
+
+
+
+
+.contact-form{
+    background: #fff;
+    /* margin-top: 10%; */
+    margin-bottom: 5%;
+    /* width: 70%; */
+}
+.contact-form .form-control{
+    border-radius:1rem;
+    margin: 20px;
+}
+.contact-image{
+    text-align: center;
+}
+.contact-image img{
+    border-radius: 6rem;
+    width: 11%;
+    margin-top: -3%;
+    transform: rotate(29deg);
+    border: 5px solid #0062cc;
+}
+.contact-form form{
+    padding: 14%;
+}
+.contact-form form .row{
+    margin-bottom: -7%;
+}
+.contact-form h3{
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: #0062cc;
+}
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.btnContactSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
+}
+
+.loginform{
+    height: auto;
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.commentbox{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.comment{
+    text-align: start;
+    background: #0062cc;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.comment p{
+    margin-left: 16px;
+}
+

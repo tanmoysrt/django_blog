@@ -1,0 +1,247 @@
+Learn Django In Depth
+1. Introduction
+    - What is web server ?
+    - What actually happens when you visit a page ?
+    - Frontend vs Backend
+
+2. Why Django Needed ?
+    - Out of box features
+        - show it in a presemtation
+    - Django ORM
+        - no need to run sql commands
+    - any time database change
+    - Scalability
+    - Multiple Security Middleware
+        - CSRF Protection
+        - XSS Protection
+        - Clickjack protection
+        - SQL Injection
+
+3. Prerequisite for django
+    - Python Basic
+        - If, else, for loop, while loop, do...while, function, decorator(not mandatory)
+
+4. Showcase and get a overview of website
+    - User Side
+    - Admin Side
+
+5. Plan & Setup Project
+    - 1 project
+        - User Side -- Step by step
+        - Admin Side -- Revise all 
+    - Django Basic commands (create the project)
+    - Note that
+        - Don't use whitespace , in place of this use undersore(_)
+    - Explore Admin Section
+
+6. Django folder structre
+    - settings.py
+    - main.py
+    - urls.py
+    - models.py
+    - Setup static and model folder
+    - Add ststicfile access in urls.py
+
+7. Handle Requests
+    - How to write function for process request
+        - HttpRequest
+        - Html Return
+    - How Routing Works
+    - How to branch urls.py to write cleaner code
+    - Discuss the how many routes we will have and write the routes
+    - Do the first home page and the about page
+
+8. Handle POST & GET Requests
+    - add subscribe now page -- POST
+
+9. Parse Data from Url
+    - <int:id> type
+
+10. Django template engine basics
+    - how to pass data
+    - for loop in html pages
+    - if else condition in html pages
+    - autoescape in html page
+    - base template 
+    - replace block 
+
+11. Specify the pages
+     - how many pages we need for our app
+     - specify ourc choice of routes
+
+12. Design the database structure and build model ORM
+    - Database Tree Design ** Use auto generated slug
+    - Convert to model
+    - DB Table Relaion
+    - See with the DB Browser what django does
+    - Add that to admin panel and visualize data
+    - Add some dummy data
+
+13. Django Shell and exploring the model
+
+14. List blogs in first page
+    - learn how to access the blogs list and how to pase that
+    - styling that also
+
+15. Browse through topics and filter
+    - Go to pages 
+    - Filter blogs by rating
+    - in this for changing data use the default admin panel
+
+16. Blog post full view
+    - normal post
+    - button panel - like | dislike | report
+
+17. Trending posts
+18. Add Search bar
+19. Normal user Registration Page
+20. Normal user login setup
+    - Authenticate, login, logout
+    - How to know user is logged in or not
+    - show request.user is how much powerful
+21. Design Reset Password (Use uuid and a long key)
+
+    - Reset Password Form
+    - Mail configure
+    - Password change form
+
+22. Normal user features
+    - Setup like, dislike for users
+    - Report Post
+
+23. Build decorator for login redirection
+24. Add Comment Section
+    - With max 1 thread
+    - Also add like/dislike buttons
+
+25. Admin Section Begin
+    - Login Form
+    - Add OTP Authentication
+
+26. Admin Panel CRUD
+    - Use Admin LTE Frontend for that
+    - CRUD Model 
+    - Add Post
+    - Edit Post
+    - Delete Post
+    - Views 
+    - Like vs Dislike Analytics
+
+27. Add WYSIWYG Editor
+    - parse html
+
+28. Admin Panel Subscription List
+
+29. Add More Users
+    - Make 2 Roles
+        - Superadmin (Can add more users)
+        - Normal Admin (Can only add posts or delete only own posts)
+    - Form to add more users
+
+30. Superadmin has access to all posts add a page for that to show all things
+
+31. Add analytics dashboard about page views
+
+32. Detach sqlite3 and upgrade it to postgresql
+
+33. Small Overview on 2 deployment
+    - Heroku
+    - AWS
+    - Comparision of them
+
+34. AWS Overview
+    - Account Creation
+    - Setup EC2
+    - Security rules setup
+    - SSH Connection Setup
+
+35. Clone Project and test
+    - Git configure in that system
+    - Clone Project
+    - Test with default WSGI support
+
+36. NGINX and gunicorn config
+37. Attach domain to that
+38. Enable free https
+39. Additionally show steps  to deploy in heroku
+    - Decalartion at first if someon eopted for AWS then he can skip this
+    - Configure project for that
+    - Deploy in heroku
+    - Attach domain
+
+40. Close The project
+
+-------- Future Upgrade ---------
+41. Like Dislike stop page reloading
+42. AJAX Post Load
+43. Comments stop page reloading
+44. Comments auto refresh
+45. Comments like no page reloading
+46. Comment delete option for admin
+47. File Manager - no reload + notification js on completion task
+48. Add that also in post section to quick upload and get link
+        - Copy to clipboard also So that can be used in wysiwyg editor for reference
+        - also add iframe full view if needed
+
+
+Pages
+ - Home page
+    - Navbar
+        - About Section
+        - Trending Types (Max 4)
+        - Login/Register
+    - Search Bar
+    - Top Header
+    - Post Of the Day
+    - Trending Posts Scroll
+    - Normal Posts Grid
+    - Footer
+
+- Search Page
+- Specific Post Page
+    - Same Navbar
+    - Post Titile , name of author, date likes dislikes
+    - Post Content
+    - Author Details
+    - Comments Section
+    - Recommended posts
+    - Same Footer
+
+- Normal User auth
+    - Login/Register/Reset Password
+
+- Admin Side(Adminlte)
+    - CRUD Panel
+        - Own Posts
+        - All Posts
+    - Create post/edit post
+    - Add Users
+    - Analytics Page
+    - Subscriptions list
+
+Routes planning 
+- /
+    - <slag>/
+    - trending/
+    - filter/  [WORK THROUGH GET REQUEST][SEARCH ALSO INCLUDED HERE]
+    - login/
+    - register/
+    - reset-pass/
+    - reset-link/
+
+
+- /admin
+    - /    (Show Analytics [DASHBAORD])
+    - allpost/ [ONLY FOR SUPERADMIN]
+    - posts/
+    - newpost/
+    - editpost/
+    - subscriptions/
+    - report/ [SHOW REPORTED CONTENT and DISCUSS]
+    - users/ [CRUD VIEW]
+    - login/
+    - register/
+    - reset-pass/
+    - reset-link/
+    
+- /defaultadmin  (Django Default Admin)

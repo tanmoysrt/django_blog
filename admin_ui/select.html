@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a>Choose Option</a>
+    <select id="dummyselect">
+        <option value="google">Google</option>
+        <option value="facebook">Facebook</option>
+        <option value="youtube">Youtube</option>
+    </select>
+    <button onclick="checkAndRedirect()">Let's Submit</button>
+    <script>
+        function checkAndRedirect(){
+            var optionselected = document.getElementById("dummyselect").value;
+            if(optionselected == "google"){
+                window.location.href ="https://google.com";
+            }
+            else if(optionselected == "facebook"){
+                window.location.href = "https://facebook.com";
+            }
+            else if(optionselected == "youtube"){
+                window.location.href = "https://youtube.com/"
+            }
+        }
+    </script>
+</body>
+</html>

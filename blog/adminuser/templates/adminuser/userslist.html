@@ -1,0 +1,82 @@
+{% extends "adminuser/base.html" %}
+{% load static %}
+
+{% block extraFile %}
+    <!-- Specific for datatable -->
+    <link rel="stylesheet" href="{% static "adminuser/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" %}">
+    <link rel="stylesheet" href="{% static "adminuser/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" %}">
+{% endblock %}
+
+{% block content %}
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+
+        <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+            <!-- All Contents of page will go here .
+              This is the portion where all change dynamically -->
+
+              <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">User Lists</h3>
+                </div>
+                <div class="card-body">
+                    <table id="maintb1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email ID</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.get_category_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email ID</th>
+                                <th>Category</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block jsScript %}
+ <!-- JS specifically for datatable -->
+    <script src="{% static "adminuser/plugins/datatables/jquery.dataTables.min.js" %}"></script>
+    <script src="{% static "adminuser/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" %}"></script>
+    <script src="{% static "adminuser/plugins/datatables-responsive/js/dataTables.responsive.min.js" %}"></script>
+    <script src="{% static "adminuser/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" %}"></script>
+
+    <script>
+        $(function () {
+            $('#maintb1').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": false,
+              "autoWidth": true,
+              "responsive": true,
+            });
+
+          });
+    </script>
+{% endblock %}

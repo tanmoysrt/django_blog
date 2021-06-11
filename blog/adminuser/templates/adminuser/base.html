@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AdminLTE 3 | Starter</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static "adminuser/plugins/fontawesome-free/css/all.min.css" %}" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static "adminuser/css/adminlte.min.css" %}" />
+
+    {% block extraFile %}
+
+    {% endblock %}
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+
+        <div class="navbar-nav ml-auto">
+          <a style="font-size: 2rem; font-family: cursive; font-weight: bold"
+            ><img
+              src="{% static "adminuser/img/logo.png" %}"
+              height="50px"
+            />&nbsp;&nbsp;DevHunt</a
+          >
+        </div>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link btn btn-danger"
+              style="font-size: 0.8rem"
+              href="/logout/"
+              role="button"
+              ><b style="color: white">Log Out </b
+              ><i class="fas fa-sign-out-alt" style="color: white"></i
+            ></a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="/" class="brand-link">
+          <img
+            src="{% static "adminuser/img/logo.png" %}"
+            alt="Devhunt Logo"
+            class="brand-image img-circle elevation-3"
+            style="opacity: 0.8"
+          />
+          <span class="brand-text font-weight-bold font-italic">DevHunt</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+            <div class="nav-item">
+              <a href="{% url "dashboard" %}" class="nav-link">
+                <i class="fas fa-tachometer-alt text-info"></i>
+                <p>&nbsp;Dashboard</p>
+              </a>
+            </div>
+            <li class="dropdown-divider"></li>
+
+
+              <li class="nav-header p-1">POSTS LIST</li>
+              <li class="nav-item">
+                <a href="{% url "ownposts" %}" class="nav-link">
+                  <i class="fab fa-usps text-primary"></i>
+                  <p>&nbsp;Owned Posts</p>
+                </a>
+              </li>
+                {% if request.user.category == "superadmin" %}
+                  <li class="nav-item">
+                    <a href="{% url "allpost" %}" class="nav-link">
+                      <i class="fab fa-usps text-success"></i>
+                      <p>&nbsp;All Posts</p>
+                    </a>
+                  </li>
+                {% endif %}
+
+
+              <li class="dropdown-divider"></li>
+              <div class="nav-item">
+                <a href="{% url "newpost" %}" class="nav-link">
+                  <i class="fas fa-plus text-success"></i>
+                  <p>&nbsp;Create New Post</p>
+                </a>
+              </div>
+
+              <li class="dropdown-divider"></li>
+
+
+                {% if request.user.category == "superadmin" %}
+                <li class="nav-header p-1">USERS</li>
+              <li class="nav-item">
+
+              </li>
+              <li class="nav-item">
+                <a href="{% url "users" %}" class="nav-link">
+                  <i class="nav-icon fas fa-users text-warning"></i>
+                  <p>Users List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url "adduser" %}" class="nav-link">
+                  <i class="nav-icon fas fa-user text-success"></i>
+                  <p>Add User</p>
+                </a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <div class="nav-item">
+                <a href="{% url "subscriptions" %}" class="nav-link">
+                  <i class="fas fa-bell text-danger"></i>
+                  <p>&nbsp;Subscriptions</p>
+                </a>
+              </div>
+              <li class="dropdown-divider"></li>
+              <div class="nav-item">
+                <a href="{% url "contact-us" %}" class="nav-link">
+                  <i class="fas fa-envelope text-warning"></i>
+                  <p>&nbsp;Contact Us Requests</p>
+                </a>
+              </div>
+              <li class="dropdown-divider"></li>
+                {% endif %}
+
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
+
+    {% block content %}
+
+    {% endblock %}
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="{% static "adminuser/plugins/jquery/jquery.min.js" %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static "adminuser/plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static "adminuser/js/adminlte.min.js" %}"></script>
+
+    {% block jsScript %}
+
+    {% endblock %}
+  </body>
+</html>

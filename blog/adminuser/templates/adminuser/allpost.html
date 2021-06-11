@@ -1,0 +1,100 @@
+{% extends "adminuser/base.html" %}
+{% load static %}
+{% load adminpaneltags %}
+
+{% block extraFile %}
+    <!-- Specific for datatable -->
+    <link rel="stylesheet" href="{% static "adminuser/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" %}">
+    <link rel="stylesheet" href="{% static "adminuser/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" %}">
+{% endblock %}
+
+{% block content %}
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+
+        <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+              {% if message %}
+              {% autoescape off %}
+                  {{ message }}
+              {% endautoescape %}
+          {% endif %}
+            <!-- All Contents of page will go here .
+              This is the portion where all change dynamically -->
+
+              <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">All Blog Posts</h3>
+                </div>
+                <div class="card-body">
+                    <table id="maintb1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Created By</th>
+                                <th>Created On</th>
+                                <th>Views</th>
+                                <th>Like vs Dislike</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for post in posts %}
+                            <tr>
+                                <td>{{ post.title }}</td>
+                                <td>{{ post.user.name }}</td>
+                                <td>{{ post.created_on.date }}</td>
+                                <td>{{ post.views }}</td>
+                                <td>{{ post.likes|countOfList }}&nbsp;👍&nbsp;{{ post.dislikes|countOfList }}&nbsp;👎</td>
+                                <td><a href="/blog-admin/editpost/{{ post.id }}/"><i class="fas fa-edit text-warning fa-lg"></i></a></td>
+                                <td><a href="?delete={{ post.id }}"><i class="fas fa-trash-alt text-danger fa-lg"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Title</th>
+                                <th>Created By</th>
+                                <th>Created On</th>
+                                <th>Views</th>
+                                <th>Like vs Dislike</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block jsScript %}
+ <!-- JS specifically for datatable -->
+    <script src="{% static "adminuser/plugins/datatables/jquery.dataTables.min.js" %}"></script>
+    <script src="{% static "adminuser/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" %}"></script>
+    <script src="{% static "adminuser/plugins/datatables-responsive/js/dataTables.responsive.min.js" %}"></script>
+    <script src="{% static "adminuser/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" %}"></script>
+
+    <script>
+        $(function () {
+            $('#maintb1').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": false,
+              "autoWidth": true,
+              "responsive": true,
+            });
+
+          });
+    </script>
+{% endblock %}

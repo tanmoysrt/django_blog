@@ -1,0 +1,143 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    <!-- Css -->
+    <link rel="stylesheet" href="{% static "normaluser/css/style.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Hello, world!</title>
+  </head>
+  <body >
+
+    <!-- Header -->
+      <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#" style="font-family: 'Lobster', cursive;font-size: 20pt;">
+                <img src="{% static "normaluser/img/logo.png" %}" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                &nbsp;&nbsp;DevHunt
+            </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav w-100">
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.path == "/"  %} active activeitem {% endif %}"  href="{% url "homepage" %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.path == "/category/"  %} active activeitem {% endif %}" href="{% url "blogcategory" %}">Category</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if request.path == "/contact-us/"  %} active activeitem {% endif %}" href="{% url "contatcus" %}">Contact Us</a>
+                  </li>
+                  <li class="nav-item">
+                      {% if request.user.is_authenticated %}
+                            <a class="nav-link btn btn-danger p-2" href="{% url "logout" %}" style="color: white;margin-bottom: 2px;width: fit-content;">Hi {{ request.user.name }} !! Logout</a>
+                      {% else %}
+                          <a class="nav-link btn btn-danger p-2" href="{% url "login" %}" style="color: white;margin-bottom: 2px;width: fit-content;">Login&nbsp;/&nbsp;Register</a>
+                      {% endif %}
+                  </li>
+                    {% if  request.user.is_authenticated %}
+                        {% if request.user.category == "normal" %}
+                            <li class="nav-item ">
+                                <button class="nav-link btn btn-info p-2" style="color: white;margin-bottom: 2px;width: fit-content;margin-left: 5px" id="rzp-button">Pay 300 & Publish Unlimited Blogs</button>
+                            </li>
+                            {% else %}
+                            <li class="nav-item ">
+                                <a class="nav-link btn btn-info p-2" href="{% url "dashboard" %}" style="color: white;margin-bottom: 2px;width: fit-content;margin-left: 5px">Admin Panel</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+                <div class="ml-auto d-flex" style="margin-right: 5px;">
+                  <form class="d-flex" method="get" action="/search/">
+                    <input class="form-control me-2" type="text" name="q" placeholder="Search" value="{{ query }}" aria-label="Search">
+                    <button class="btn btn-warning" type="submit">Search</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+        </nav>
+          {% block header %}
+
+          {% endblock %}
+
+      </header>
+
+    <!-- End Header -->
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    <footer class="footer mt-auto py-3 bg-dark">
+      <div class="container text-center">
+        <span class="text-muted">All The Rights Reserved To Devhunt © 2021-22</span>
+      </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  {% block jsscript %}
+
+  {% endblock %}
+
+    {% if  request.user.is_authenticated %}
+        {% if request.user.category == "normal" %}
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <script>
+            var options = {
+                "key": "rzp_test_U4ii7u4SIQvK0v", // Enter the Key ID generated from the Dashboard
+                "amount": "30000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "INR",
+                "name": "DevHunt",
+                "description": "Blog Subscription",
+                "handler": function (response){
+                    window.location.href = "/charge?payment_id="+response.razorpay_payment_id;
+                },
+                "prefill": {
+                    "name": "{{ request.user.name }}",
+                    "email": "{{ request.user.email }}",
+                },
+                "notes": {
+                    "registerd_email": "{{ request.user.email }}"
+                },
+            };
+
+            var rzp1 = new Razorpay(options);
+
+            document.getElementById('rzp-button').onclick = function(e){
+                rzp1.open();
+                e.preventDefault();
+            }
+            </script>
+        {% endif %}
+    {% endif %}
+
+
+
+  </body>
+</html>

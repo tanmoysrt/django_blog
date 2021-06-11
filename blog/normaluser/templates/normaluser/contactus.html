@@ -1,0 +1,59 @@
+{% extends "normaluser/base.html" %}
+{% load static %}
+{% block header %}
+    <div class="headerhero">
+      <img src="{% static "normaluser/img/headerhero.jpeg" %}">
+      <section>
+        <h1>DevHunt</h1>
+        <h3>Contact Us • Get Reply Within 24 hour</h3>
+     </section>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container contact-form">
+        <div class="contact-image">
+            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+        </div>
+        {% if message %}
+            {% autoescape off %}
+                {{ message }}
+            {% endautoescape %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <h3>Drop Us a Message</h3>
+           <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name *"  value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email" class="form-control" placeholder="Your Email *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phoneno" class="form-control" placeholder="Your Phone Number *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btnContact"  >Submit Query</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea name="message" class="form-control"  placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+</div>
+
+{% endblock %}
+
+
+{% block jsscript %}
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+{% endblock %}

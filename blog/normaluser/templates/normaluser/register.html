@@ -1,0 +1,44 @@
+{% extends "normaluser/base.html" %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" style="background-color: rgb(253, 45, 107);height: 90vh;display: flex;justify-content: center;align-items: center;">
+      <div class="loginform p-4">
+        <h1 class="mt-5">Register Now</h1>
+          {% if message %}
+              {% autoescape off %}
+                  {{ message }}
+              {% endautoescape %}
+          {% endif %}
+        <form class="p-3 text-start" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="input1" class="form-label">Name</label>
+                <input type="text" class="form-control" id="input1" name="name" placeholder="Enter your full name" required>
+            </div>
+          <div class="mb-3">
+            <label for="input1" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="input1" name="email" placeholder="Email address" required>
+          </div>
+          <div class="mb-3">
+            <label for="input2" class="form-label">Password</label>
+            <input type="password" class="form-control" id="input2" name="passsword" placeholder="Password" required>
+          </div>
+          <div class="mb-3">
+            <label for="input2" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="input2" name="confirmpassword" placeholder="Confirm Password" required>
+          </div>
+          <button class="btn btn-warning w-100" type="submit">Register Now</button>
+        </form>
+        <a href="{% url "login" %}" class="btn btn-dark w-100">Already Have An Account ? Sign In</a>
+      </div>
+    </div>
+{% endblock %}
+
+
+{% block jsscript %}
+
+{% endblock %}

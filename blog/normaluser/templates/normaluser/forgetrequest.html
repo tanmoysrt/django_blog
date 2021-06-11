@@ -1,0 +1,41 @@
+{% extends "normaluser/base.html" %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" style="background-color: rgb(253, 45, 107);height: 90vh;display: flex;justify-content: center;align-items: center;">
+      <div class="loginform p-4">
+        <h1 class="mt-5">Reset Password</h1>
+          {% if message %}
+            {% autoescape off %}
+                {{ message }}
+            {% endautoescape %}
+        {% endif %}
+        <form class="p-3 text-start" method="post">
+            {% csrf_token %}
+          <div class="mb-3">
+            <label for="input1" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="input1" name="email" placeholder="Email address ">
+          </div>
+
+          <button class="btn btn-primary w-100">Reset Password</button>
+        </form>
+      </div>
+    </div>
+{% endblock %}
+
+
+{% block jsscript %}
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+{% endblock %}
+
+
+
+
+

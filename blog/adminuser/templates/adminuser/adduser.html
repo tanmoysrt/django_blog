@@ -1,0 +1,76 @@
+{% extends "adminuser/base.html" %}
+{% load static %}
+
+{% block extraFile %}
+
+{% endblock %}
+
+{% block content %}
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+
+        <!-- Main content -->
+        <div class="content">
+          <div class="container-fluid">
+          {% if message %}
+              {% autoescape off %}
+                  {{ message }}
+              {% endautoescape %}
+          {% endif %}
+            <!-- All Contents of page will go here .
+              This is the portion where all change dynamically -->
+
+              <div class="card card-success mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Register User (Password Will be sent to email)</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form method="post">
+                {% csrf_token %}
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Name</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Choose Category</label>
+                        <select class="form-control" name="category" required>
+                            {% for usercategory in usercategories %}
+                                <option value="{{ usercategory.0 }}">{{ usercategory.1 }}</option>
+                            {% endfor %}
+
+                        </select>
+                      </div>
+
+                  </div>
+                  <!-- /.card-body -->
+
+                  <div class="card-footer">
+                    <button type="submit" style="float: left;" class="btn btn-secondary">Reset</button>
+                    <button type="submit" style="float: right;" class="btn btn-primary">Register User</button>
+                  </div>
+                </form>
+              </div>
+
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block jsScript %}
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+{% endblock %}
