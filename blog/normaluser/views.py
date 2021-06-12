@@ -9,6 +9,9 @@ import string
 import razorpay
 
 # Homepage of blog
+from .utils import send_mail
+
+
 def homepage(request):
     data={
         "trending":models.Blog.objects.all().order_by("-views")[0:21],
@@ -181,7 +184,7 @@ def forgetPasswordRequest(request):
                 key=''.join(secrets.choice(string.ascii_uppercase + string.digits) for i in range(80)).lower()
             )
             resetRecord.save()
-            print(f"http://127.0.0.1:8000/reset-link/{resetRecord.key}")
+            send_mail(user.email,f"Click here to reset your email address http://127.0.0.1:8000/reset-link/{resetRecord.key}")
         except:
             print("No user found")
         data["message"]='''<div class="alert alert-success" role="alert">If you have account in this email id. You will recieve a reset link in mail</div>'''

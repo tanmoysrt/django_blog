@@ -12,6 +12,9 @@ import random
 
 
 # Create your views here.
+from normaluser.utils import send_mail
+
+
 @admin_required
 def dashoard(request):
     data = {}
@@ -193,8 +196,10 @@ def adduser(request):
                     category=category,
                     password=password
                 )
+                send_mail(email,f"Your default password is {password}. Kindly login.")
                 data["message"]= '''<div class="alert alert-success" role="alert">Account Created Successfully</div>'''
-            except:
+            except Exception as e:
+                print(e)
                 data["message"]= '''<div class="alert alert-danger" role="alert">Failed !</div>'''
         else:
             data["message"] = '''<div class="alert alert-warning" role="alert">Email Already Exsists !</div>'''
