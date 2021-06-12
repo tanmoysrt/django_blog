@@ -128,6 +128,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Media Folder Where we will store additional files for our website
 # Step 4 : Config Media Folder
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 AUTH_USER_MODEL = "normaluser.CustomUser"
